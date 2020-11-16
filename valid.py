@@ -23,11 +23,18 @@ device_ids = [0]
 
 # hyper parameter
 temporal = 5
-train_data_dir = 'dhp_lstm/one_test/'
-train_label_dir = 'dhp_lstm/one_test/'
+dataN = 3
+if dataN == 1:
+    train_data_dir = '../data/test_one/'
+    train_label_dir = '../data/test_one/'
 
-# train_data_dir = 'dhp_lstm/one_test/'
-# train_label_dir = 'dhp_lstm/one_test/'
+if dataN == 2:
+    train_data_dir = '../data/test/'
+    train_label_dir = '../data/test/'
+
+if dataN == 3:
+    train_data_dir = '../data/test_action/'
+    train_label_dir = '../data/test_action/'
 
 learning_rate = 8e-6
 batch_size = 1
