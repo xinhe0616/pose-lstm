@@ -100,6 +100,8 @@ class PoseResNet(nn.Module):
         self.layer3 = self._make_layer(block, 256, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
 
+        self.temporal = 20
+
         # lstm
         self.outclass = 13
         self.conv_ix_lstm = nn.Conv2d(256 + self.outclass, 256, kernel_size=3, padding=1, bias=True)
@@ -301,7 +303,7 @@ class PoseResNet(nn.Module):
         # heat_maps.append(initial_heatmap)  # for initial loss
         # heat_maps.append(heatmap)
 
-        for i in range(5):
+        for i in range(self.temporal):
             image = images[:,i]
             feature = self._resnet2(image)
             cell, hide = self.lstm(heatmap, feature, hide, cell)

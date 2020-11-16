@@ -22,7 +22,7 @@ import math
 device_ids = [0]
 
 # hyper parameter
-temporal = 5
+temporal = 20
 dataN = 3
 if dataN == 1:
     train_data_dir = '../data/test_one/'
@@ -121,7 +121,7 @@ def train():
                 targets = targets.cuda()
                 loss = criterion(outputs, targets)
                 losses.update(loss.item(), inputs.size(0))
-                for j in range(5):
+                for j in range(temporal):
                     out = outputs[j]
                     tar = targets[:, j]
                     joint = joints[:, j]
