@@ -22,8 +22,8 @@ import math
 device_ids = [0]
 
 # hyper parameter
-temporal = 20
-dataN = 3
+temporal = config.temporal
+dataN = 4
 if dataN == 1:
     train_data_dir = '../data/test_one/'
     train_label_dir = '../data/test_one/'
@@ -35,6 +35,10 @@ if dataN == 2:
 if dataN == 3:
     train_data_dir = '../data/test_action/'
     train_label_dir = '../data/test_action/'
+
+if dataN == 4:
+    train_data_dir = '../data/train/'
+    train_label_dir = '../data/train/'
 
 learning_rate = 8e-6
 batch_size = 1
@@ -92,7 +96,8 @@ def plot_2d(dvs_frame, joint, pre):
     plt.pause(0.0002)
 
 plt.ion()
-list = [5,10,15,20,25,30,35,40,45,50]
+list = [50]
+# list = [5,10,15,20,25,30,35,40,45,50]
 def train():
     criterion = JointsMSELoss(
         use_target_weight=config.LOSS.USE_TARGET_WEIGHT
@@ -142,7 +147,7 @@ def train():
                         preds = np.array(preds)
                         for j in range(13):
                             res += math.fabs(joint[i][j][0] - preds[i][j][0]) + math.fabs(joint[i][j][1] - preds[i][j][1])
-                        # plot_2d(data_numpy[i], joint[i], preds[i])
+                        plot_2d(data_numpy[i], joint[i], preds[i])
                     # print(res//(13))
                     res_totle += res
 

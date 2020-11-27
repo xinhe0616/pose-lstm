@@ -419,7 +419,7 @@ class JointsMSELoss(nn.Module):
     def forward(self, outputs, targets):
         total_loss = 0
 
-        for t in range(5):
+        for t in range(config.temporal):
             predict = outputs[t]
             target = targets[:, t, :, :, :]
             tmp_loss = self.criterion(predict, target)  # loss in each stage
@@ -443,4 +443,4 @@ class JointsMSELoss(nn.Module):
         #     # fsdk
         #     loss += 0.5 * self.criterion(heatmap_pred, heatmap_gt)
 
-        return total_loss
+        return total_loss/13

@@ -1,5 +1,7 @@
 from easydict import EasyDict as edict
+
 config = edict()
+config.temporal = 1
 config.GPUS = '0'
 config.OUTPUT_DIR = ''
 config.WORKERS= 0

@@ -7,7 +7,7 @@ from collections import OrderedDict
 BN_MOMENTUM = 0.1
 logger = logging.getLogger(__name__)
 
-
+from config import config
 def conv3x3(in_planes, out_planes, stride=1):
     """3x3 convolution with padding"""
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,
@@ -100,7 +100,7 @@ class PoseResNet(nn.Module):
         self.layer3 = self._make_layer(block, 256, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
 
-        self.temporal = 20
+        self.temporal = config.temporal
 
         # lstm
         self.outclass = 13

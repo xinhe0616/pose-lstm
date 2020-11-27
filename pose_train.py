@@ -22,8 +22,8 @@ from torchvision import transforms
 device_ids = [3]
 
 # hyper parameter
-temporal = 20
-dataN = 1
+temporal = config.temporal
+dataN = 2
 if dataN == 1:
     train_data_dir = '../data/train_one/'
     train_label_dir = '../data/train_one/'
@@ -35,6 +35,8 @@ if dataN == 2:
 if dataN == 3:
     train_data_dir = '../data/train_action/'
     train_label_dir = '../data/train_action/'
+
+
 
 learning_rate = 8e-6
 batch_size = 1
